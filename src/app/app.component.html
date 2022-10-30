@@ -1,19 +1,27 @@
-<form class="enum-form">
-  <mat-form-field appearance="fill">
-    <mat-label>Saved flag enums</mat-label>
-    <mat-select [(value)]="selectedSavedEnum">
-      <mat-option *ngFor="let savedEnum of savedEnums" [value]="savedEnum">
-        {{savedEnum}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field class="enum-full-width" appearance="fill">
-    <mat-label>Paste your enum flag here</mat-label>
-    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-  </mat-form-field>
-  <button mat-button color="primary" (click)="saveEnumLocally">Save Enum locally</button>
-  <mat-form-field appearance="fill">
-    <mat-label>Enter your enum as number</mat-label>
-    <input type="text" [(ngModel)]="numberAsEnum" matInput placeholder="Enum as number">
-  </mat-form-field>
-</form>
+<mat-form-field appearance="fill">
+  <mat-label>Saved flag enums</mat-label>
+  <mat-select [(value)]="selectedSavedEnumKey">
+    <mat-option *ngFor="let savedEnum of savedEnums"
+                [value]="savedEnum.value">
+      {{savedEnum.key}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field class="enum-full-width"
+                appearance="fill">
+  <mat-label>Paste your enum flag here</mat-label>
+  <textarea matInput
+            rows="4"
+            [(ngModel)]="selectedSavedEnumValue"></textarea>
+</mat-form-field>
+<button mat-button
+        color="primary"
+        (click)="saveEnumLocally()">Save Enum locally</button>
+<mat-divider></mat-divider>
+<mat-form-field appearance="fill">
+  <mat-label>Enter your enum as number</mat-label>
+  <input type="text"
+         [(ngModel)]="numberAsEnum"
+         matInput
+         placeholder="Enum as number">
+</mat-form-field>

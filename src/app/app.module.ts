@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatGridListModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    TextFieldModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

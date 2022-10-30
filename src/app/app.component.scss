@@ -1,9 +1,5 @@
-.enum-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.enum-full-width {
-  width: 100%;
+mat-form-field,
+button {
+  display: block;
+  margin: 24px;
 }

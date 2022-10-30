@@ -1,6 +1,6 @@
+import { EnumObject } from './models/enum-object';
 import { AppService } from './app.service';
 import { Component, OnInit } from '@angular/core';
-import { SavedEnum } from './models/saved-enum';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +10,18 @@ import { SavedEnum } from './models/saved-enum';
 export class AppComponent implements OnInit {
   title = 'enum-flag-converter';
   public numberAsEnum: number = 0;
-  public selectedSavedEnum: number = 0;
-  public savedEnums: SavedEnum[] = [];
+  public selectedSavedEnumKey: string = '';
+  public selectedSavedEnumValue: string = '';
+  public savedEnums: EnumObject[] = [];
 
   constructor(private appService: AppService) { }
 
   public ngOnInit(): void {
     this.savedEnums = this.appService.getSavedEnums();
+    console.log(this.savedEnums);
   }
 
   public saveEnumLocally(): void {
-    console.log('saved');
+    this.appService.saveNewEnum(this.selectedSavedEnumKey, this.selectedSavedEnumValue);
   }
 }

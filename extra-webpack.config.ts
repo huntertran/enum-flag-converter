@@ -10,7 +10,7 @@ export default (
     if (config.devServer && config.devServer.allowedHosts) {
         config.devServer.allowedHosts = [
             ...config.devServer.allowedHosts,
-            ...['https://huntertran-blog-jx576xpfq6rw-4200.preview.app.github.dev/']];
+            ...['.preview.app.github.dev']];
     }
 
     return config;

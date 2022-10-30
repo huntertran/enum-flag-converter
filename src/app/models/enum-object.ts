@@ -1,4 +1,4 @@
 export interface EnumObject {
     key: string;
-    value: number;
+    value: string;
 }
