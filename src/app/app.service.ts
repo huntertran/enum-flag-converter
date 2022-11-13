@@ -1,7 +1,7 @@
 import { EnumObject } from './models/enum-object';
 import { Injectable } from '@angular/core';
 
-const SAVED_ENUMS: string = 'savedEnums';
+export const SAVED_ENUMS: string = 'savedEnums';
 
 @Injectable({
   providedIn: 'root'
@@ -23,15 +23,15 @@ export class AppService {
     return enums;
   }
 
-  public saveNewEnum(newEnum: EnumObject) {
+  public saveNewEnum(newEnum: EnumObject): void {
     let enums: EnumObject[] = this.parseSavedEnums();
 
-    let newEnumObject: EnumObject = {
-      key: newEnum.key,
-      value: newEnum.value
-    }
+//    let newEnumObject: EnumObject = {
+//      key: newEnum.key,
+//      value: newEnum.value
+//    }
 
-    enums.push(newEnumObject);
+    enums.push(newEnum);
 
     enums = enums.filter(item => item.key != '');
 
