@@ -1,6 +1,7 @@
 <mat-form-field appearance="fill">
   <mat-label>Saved flag enums</mat-label>
-  <mat-select [(value)]="selectedEnum">
+  <mat-select [(value)]="selectedEnum"
+              (selectionChange)="savedEnumSelectionChanged()">
     <mat-option *ngFor="let savedEnum of savedEnums"
                 [value]="savedEnum">
       {{savedEnum.key}}

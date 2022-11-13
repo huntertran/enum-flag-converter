@@ -1,3 +1,4 @@
+import { EnumsService } from './services/enums.service';
 import { EnumObject } from './models/enum-object';
 import { AppService } from './app.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,9 @@ export class AppComponent implements OnInit {
   public selectedEnum!: EnumObject;
   public savedEnums: EnumObject[] = [];
 
-  constructor(private appService: AppService) { }
+  constructor(
+    private appService: AppService,
+    private enumsService: EnumsService) { }
 
   public ngOnInit(): void {
     this.selectedEnum = {
@@ -31,7 +34,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public savedEnumSelectionChanged($event: MatSelectChange): void {
-    this.selectedEnum = $event.value;
+  public savedEnumSelectionChanged(): void {
+    this.enumsService.parseFromEnumObject(this.selectedEnum);
   }
 }
