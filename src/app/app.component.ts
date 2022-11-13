@@ -1,6 +1,7 @@
 import { EnumObject } from './models/enum-object';
 import { AppService } from './app.service';
 import { Component, OnInit } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +11,27 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'enum-flag-converter';
   public numberAsEnum: number = 0;
-  public selectedSavedEnumKey: string = '';
-  public selectedSavedEnumValue: string = '';
+  public selectedEnum!: EnumObject;
   public savedEnums: EnumObject[] = [];
 
   constructor(private appService: AppService) { }
 
   public ngOnInit(): void {
+    this.selectedEnum = {
+      key: '',
+      value: ''
+    };
     this.savedEnums = this.appService.getSavedEnums();
     console.log(this.savedEnums);
   }
 
   public saveEnumLocally(): void {
-    this.appService.saveNewEnum(this.selectedSavedEnumKey, this.selectedSavedEnumValue);
+    if (this.selectedEnum) {
+      this.appService.saveNewEnum(this.selectedEnum?.key, this.selectedEnum?.value);
+    }
+  }
+
+  public savedEnumSelectionChanged($event: MatSelectChange): void {
+    this.selectedEnum = $event.value;
   }
 }
