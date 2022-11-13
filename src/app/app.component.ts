@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
 
   public saveEnumLocally(): void {
     if (this.selectedEnum) {
-      this.appService.saveNewEnum(this.selectedEnum?.key, this.selectedEnum?.value);
+      this.appService.saveNewEnum(this.selectedEnum);
     }
   }
 

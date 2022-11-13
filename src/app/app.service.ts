@@ -23,12 +23,12 @@ export class AppService {
     return enums;
   }
 
-  public saveNewEnum(key: string, value: string) {
+  public saveNewEnum(newEnum: EnumObject) {
     let enums: EnumObject[] = this.parseSavedEnums();
 
     let newEnumObject: EnumObject = {
-      key: key,
-      value: value
+      key: newEnum.key,
+      value: newEnum.value
     }
 
     enums.push(newEnumObject);
