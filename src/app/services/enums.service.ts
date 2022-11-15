@@ -22,6 +22,6 @@ export class EnumsService {
       }
     });
 
-    console.log(this.flaggedEnum);
+    // console.log(this.flaggedEnum);
   }
 }
