@@ -21,7 +21,5 @@ export class EnumsService {
         this.flaggedEnum[flagBit] = flagName;
       }
     });
-
-    // console.log(this.flaggedEnum);
   }
 }
