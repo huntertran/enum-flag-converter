@@ -1,11 +1,19 @@
-import { fakeAsync, TestBed } from "@angular/core/testing";
+import {fakeAsync, TestBed} from "@angular/core/testing";
 
-import { AppComponent } from "./app.component";
-import { APP_BASE_HREF } from "@angular/common";
-import { AppService } from "./app.service";
-import { AppServiceMock } from "./app.service.mock";
+import {AppComponent} from "./app.component";
+import {APP_BASE_HREF} from "@angular/common";
+import {AppService} from "./app.service";
+import {AppServiceMock} from "./app.service.mock";
 
 describe('AppComponent', () => {
+  const RunTestCase1: () => void = function () {
+    it(`App title should be 'enum-flag-converter'`, fakeAsync(() => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app: AppComponent = fixture.debugElement.componentInstance;
+      expect(app.title).toEqual('enum-flag-converter');
+    }));
+  }
+
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -18,9 +26,5 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  it(`App title should be 'enum-flag-converter'`, fakeAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app: AppComponent = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('enum-flag-converter');
-  }));
+  RunTestCase1();
 })
