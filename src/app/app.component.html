@@ -30,8 +30,8 @@
 <mat-divider></mat-divider>
 <mat-form-field appearance="fill">
   <mat-label>Enter your enum as number</mat-label>
-  <input type="text"
-         [ngModel]="numberAsEnum"
+  <input type="number"
+         [(ngModel)]="numberAsEnum"
          (ngModelChange)="convert()"
          matInput
          placeholder="Enum as number">
