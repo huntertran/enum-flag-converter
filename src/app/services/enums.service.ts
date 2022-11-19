@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EnumsService {
-  private flaggedEnum: Record<number, string> = {};
+  private flaggedEnum: Map<number, string> = new Map();
 
   constructor() { }
 
@@ -18,8 +18,25 @@ export class EnumsService {
         let flagBit: number = Number.parseInt(flagElements[1].trim());
         let flagName: string = flagElements[0].trim();
 
-        this.flaggedEnum[flagBit] = flagName;
+        this.flaggedEnum.set(flagBit, flagName);
       }
     });
+  }
+
+  public convertFlagsToString(numberValue: number): string {
+    let results: string[] = [];
+
+    if (this.flaggedEnum.size == 0) {
+      return '';
+    }
+
+    for (let [key, value] of this.flaggedEnum) {
+      if (key != 0 && (numberValue & key) == key) {
+        // has the flag
+        results.push(value);
+      }
+    }
+    
+    return results.join(', ');
   }
 }

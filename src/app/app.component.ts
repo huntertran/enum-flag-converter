@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
   public selectedEnum!: EnumObject;
   public savedEnums: EnumObject[] = [];
 
+  public convertedResult: string = '';
+
   constructor(
     private appService: AppService,
     private enumsService: EnumsService) { }
@@ -36,5 +38,10 @@ export class AppComponent implements OnInit {
 
   public savedEnumSelectionChanged(): void {
     this.enumsService.parseFromEnumObject(this.selectedEnum);
+  }
+
+  public convert(): void {
+    this.enumsService.parseFromEnumObject(this.selectedEnum);
+    this.convertedResult = this.enumsService.convertFlagsToString(this.numberAsEnum);
   }
 }
