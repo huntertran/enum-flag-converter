@@ -1,5 +1,6 @@
 import { EnumObject } from './models/enum-object';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const SAVED_ENUMS: string = 'savedEnums';
 
@@ -8,7 +9,9 @@ export const SAVED_ENUMS: string = 'savedEnums';
 })
 export class AppService {
 
-  constructor() { }
+  constructor(
+    private _snackBar: MatSnackBar
+  ) { }
 
   public getSavedEnums(): EnumObject[] {
     let enums: EnumObject[] = this.parseSavedEnums();
@@ -26,10 +29,9 @@ export class AppService {
   public saveNewEnum(newEnum: EnumObject): void {
     let enums: EnumObject[] = this.parseSavedEnums();
 
-//    let newEnumObject: EnumObject = {
-//      key: newEnum.key,
-//      value: newEnum.value
-//    }
+    if (enums.find((item: EnumObject) => item.key == newEnum.key)) {
+      this._snackBar.open("Enum name is already existed. Please choose a new name!", "Close");
+    }
 
     enums.push(newEnum);
 
