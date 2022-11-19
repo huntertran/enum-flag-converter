@@ -22,17 +22,19 @@ export class AppComponent implements OnInit {
     private enumsService: EnumsService) { }
 
   public ngOnInit(): void {
-    this.selectedEnum = {
-      key: '',
-      value: ''
-    };
-    this.savedEnums = this.appService.getSavedEnums();
-    console.log(this.savedEnums);
+    this.initializeEnumList();
   }
 
   public saveEnumLocally(): void {
     if (this.selectedEnum) {
       this.appService.saveNewEnum(this.selectedEnum);
+    }
+  }
+
+  public deleteSelectedEnum(): void {
+    if (this.selectedEnum) {
+      this.appService.deleteSavedEnum(this.selectedEnum.key);
+      this.initializeEnumList();
     }
   }
 
@@ -43,5 +45,14 @@ export class AppComponent implements OnInit {
   public convert(): void {
     this.enumsService.parseFromEnumObject(this.selectedEnum);
     this.convertedResult = this.enumsService.convertFlagsToString(this.numberAsEnum);
+  }
+
+  private initializeEnumList(): void {
+    this.selectedEnum = {
+      key: '',
+      value: ''
+    };
+
+    this.savedEnums = this.appService.getSavedEnums();
   }
 }

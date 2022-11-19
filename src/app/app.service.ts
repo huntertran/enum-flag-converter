@@ -31,6 +31,7 @@ export class AppService {
 
     if (enums.find((item: EnumObject) => item.key == newEnum.key)) {
       this._snackBar.open("Enum name is already existed. Please choose a new name!", "Close");
+      return;
     }
 
     enums.push(newEnum);
