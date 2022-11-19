@@ -18,6 +18,10 @@ export class EnumsService {
         let flagBit: number = Number.parseInt(flagElements[1].trim());
         let flagName: string = flagElements[0].trim();
 
+        if (Number.isNaN(flagBit)) {
+          throw new Error("Empty enum Key!")
+        }
+
         this.flaggedEnum.set(flagBit, flagName);
       }
     });

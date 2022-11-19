@@ -20,8 +20,8 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
-        {provide: AppService, useClass: AppServiceMock},
-        {provide: APP_BASE_HREF, useValue: '/'}
+        { provide: AppService, useClass: AppServiceMock },
+        { provide: APP_BASE_HREF, useValue: '/' }
       ]
     }).compileComponents();
   }));
