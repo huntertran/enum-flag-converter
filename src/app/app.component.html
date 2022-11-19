@@ -31,14 +31,11 @@
 <mat-form-field appearance="fill">
   <mat-label>Enter your enum as number</mat-label>
   <input type="text"
-         [(ngModel)]="numberAsEnum"
+         [ngModel]="numberAsEnum"
+         (ngModelChange)="convert()"
          matInput
          placeholder="Enum as number">
 </mat-form-field>
-
-<button mat-button
-        color="primary"
-        (click)="convert()">Convert</button>
 
 <div>
   <p>{{convertedResult}}</p>
