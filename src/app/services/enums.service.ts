@@ -1,4 +1,4 @@
-import { EnumObject } from './../models/enum-object';
+import { EnumObject } from '../models/enum-object';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class EnumsService {
         let flagName: string = flagElements[0].trim();
 
         if (Number.isNaN(flagBit)) {
-          throw new Error("Empty enum Key!")
+          throw new Error("Empty enum Key!");
         }
 
         this.flaggedEnum.set(flagBit, flagName);
