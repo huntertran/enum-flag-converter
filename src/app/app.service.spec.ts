@@ -1,9 +1,8 @@
 import { TestBed } from "@angular/core/testing";
-import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { AppService, SAVED_ENUMS } from "./app.service";
 import { EnumObject } from "./models/enum-object";
-import {Overlay} from "@angular/cdk/overlay";
+import { Overlay } from "@angular/cdk/overlay";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 describe('AppService Test', () => {
@@ -107,7 +106,6 @@ describe('AppService Test', () => {
         BrowserAnimationsModule
       ],
       providers: [
-        { provide: MatSnackBar, useClass: MatSnackBar },
         { provide: Overlay, useClass: Overlay }
       ]
     });
@@ -121,5 +119,3 @@ describe('AppService Test', () => {
   RunTestCase5();
   RunTestCase6();
 });
-
-

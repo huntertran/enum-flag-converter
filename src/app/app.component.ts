@@ -2,7 +2,6 @@ import { EnumsService } from './services/enums.service';
 import { EnumObject } from './models/enum-object';
 import { AppService } from './app.service';
 import { Component, OnInit } from '@angular/core';
-import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +26,12 @@ export class AppComponent implements OnInit {
 
   public saveEnumLocally(): void {
     if (this.selectedEnum) {
-      this.appService.saveNewEnum(this.selectedEnum);
+      let saveSuccess: boolean = this.appService.saveNewEnum(this.selectedEnum);
+
+      if (!saveSuccess) {
+        this.appService.updateEnum(this.selectedEnum);
+      }
+
     }
   }
 
@@ -43,6 +47,7 @@ export class AppComponent implements OnInit {
   }
 
   public convert(): void {
+
     this.enumsService.parseFromEnumObject(this.selectedEnum);
     this.convertedResult = this.enumsService.convertFlagsToString(this.numberAsEnum);
   }

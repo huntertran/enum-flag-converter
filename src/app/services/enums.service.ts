@@ -10,6 +10,9 @@ export class EnumsService {
   constructor() { }
 
   public parseFromEnumObject(enumObject: EnumObject): void {
+    // reset the map
+    this.flaggedEnum = new Map();
+
     let delimiter: string = ',';
     let splitted: string[] = enumObject.value.split(delimiter);
     splitted.forEach(flag => {

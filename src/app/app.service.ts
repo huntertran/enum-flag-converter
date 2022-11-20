@@ -1,6 +1,5 @@
 import { EnumObject } from './models/enum-object';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const SAVED_ENUMS: string = 'savedEnums';
 
@@ -9,9 +8,7 @@ export const SAVED_ENUMS: string = 'savedEnums';
 })
 export class AppService {
 
-  constructor(
-    private _snackBar: MatSnackBar
-  ) { }
+  constructor() { }
 
   public getSavedEnums(): EnumObject[] {
     let enums: EnumObject[] = this.parseSavedEnums();
@@ -26,12 +23,25 @@ export class AppService {
     return enums;
   }
 
-  public saveNewEnum(newEnum: EnumObject): void {
+  public updateEnum(modifiedEnum: EnumObject): void {
+    let enums: EnumObject[] = this.parseSavedEnums();
+
+    let existedEnum = enums.find((item: EnumObject) => item.key == modifiedEnum.key);
+
+    if (existedEnum) {
+      existedEnum.value = modifiedEnum.value;
+    }
+
+    enums = enums.filter(item => item.key != '');
+
+    localStorage.setItem(SAVED_ENUMS, JSON.stringify(enums));
+  }
+
+  public saveNewEnum(newEnum: EnumObject): boolean {
     let enums: EnumObject[] = this.parseSavedEnums();
 
     if (enums.find((item: EnumObject) => item.key == newEnum.key)) {
-      this._snackBar.open("Enum name is already existed. Please choose a new name!", "Close");
-      return;
+      return false;
     }
 
     enums.push(newEnum);
@@ -39,6 +49,8 @@ export class AppService {
     enums = enums.filter(item => item.key != '');
 
     localStorage.setItem(SAVED_ENUMS, JSON.stringify(enums));
+
+    return true;
   }
 
   public deleteSavedEnum(key: string): void {
