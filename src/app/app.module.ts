@@ -13,10 +13,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NumberToEnumsComponent } from './components/number-to-enums/number-to-enums.component';
+import { EnumsToNumberComponent } from './components/enums-to-number/enums-to-number.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NumberToEnumsComponent,
+    EnumsToNumberComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     TextFieldModule,
     MatDividerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

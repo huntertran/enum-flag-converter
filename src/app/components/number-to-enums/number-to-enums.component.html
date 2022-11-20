@@ -1,0 +1,42 @@
+<mat-form-field appearance="fill">
+    <mat-label>Saved flag enums</mat-label>
+    <mat-select [(value)]="selectedEnum"
+                (selectionChange)="savedEnumSelectionChanged()">
+        <mat-option *ngFor="let savedEnum of savedEnums"
+                    [value]="savedEnum">
+            {{savedEnum.key}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Enum name</mat-label>
+    <input matInput
+           placeholder="Enter your new enum name here"
+           [(ngModel)]="selectedEnum.key">
+</mat-form-field>
+<mat-form-field class="enum-full-width"
+                appearance="fill">
+    <mat-label>Paste your enum flag here</mat-label>
+    <textarea matInput
+              rows="4"
+              [(ngModel)]="selectedEnum.value"></textarea>
+</mat-form-field>
+<button mat-button
+        color="primary"
+        (click)="saveEnumLocally()">Save Enum locally</button>
+<button mat-button
+        color="primary"
+        (click)="deleteSelectedEnum()">Delete selected enum</button>
+<mat-divider></mat-divider>
+<mat-form-field appearance="fill">
+    <mat-label>Enter your enum as number</mat-label>
+    <input type="number"
+           [(ngModel)]="numberAsEnum"
+           (ngModelChange)="convert()"
+           matInput
+           placeholder="Enum as number">
+</mat-form-field>
+
+<div>
+    <p>{{convertedResult}}</p>
+</div>
