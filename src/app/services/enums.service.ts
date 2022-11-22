@@ -46,4 +46,21 @@ export class EnumsService {
     
     return results.join(', ');
   }
+
+  public getFlagNamesFromFlaggedEnum(): string[]
+  {
+      return [...this.flaggedEnum.values()];
+  }
+
+  public convertFlagNamesToNumber(flags: string[]) {
+    let result = 0;
+
+    for (let [key, value] of this.flaggedEnum) {
+      if (flags.includes(value)) {
+          result += key;
+      }
+    }
+
+    return result;
+  }
 }

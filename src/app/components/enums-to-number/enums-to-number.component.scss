@@ -1,0 +1,22 @@
+mat-form-field,
+{
+    display: block;
+    margin: 24px;
+}
+
+.flag-checkbox-list
+{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 24px;
+    gap: 16px;
+
+    font-size: large;
+}
+
+.result
+{
+    margin-left: 24px;
+    font-size: 24px;
+}

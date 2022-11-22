@@ -1,1 +1,18 @@
-<p>enums-to-number works!</p>
+<div class="flag-checkbox-list"
+     [formGroup]="flagsFormGroup">
+    <mat-checkbox *ngFor="let flagName of flagNames"
+                  [formControlName]="flagName"
+                  color="primary">{{ flagName }}
+    </mat-checkbox>
+</div>
+
+<button mat-button
+        color="primary"
+        (click)="onClearFlagsClick()">Clear Flags
+</button>
+
+<mat-divider></mat-divider>
+
+<div class="result">
+    <p>{{convertedResult}}</p>
+</div>
