@@ -14,6 +14,7 @@
            placeholder="Enter your new enum name here"
            [(ngModel)]="selectedEnum.key">
 </mat-form-field>
+
 <mat-form-field class="enum-full-width"
                 appearance="fill">
     <mat-label>Paste your enum flag here</mat-label>
@@ -21,13 +22,20 @@
               rows="4"
               [(ngModel)]="selectedEnum.value"></textarea>
 </mat-form-field>
-<button mat-button
-        color="primary"
-        (click)="saveEnumLocally()">Save Enum locally</button>
-<button mat-button
-        color="primary"
-        (click)="deleteSelectedEnum()">Delete selected enum</button>
+
+<div class="button-box">
+    <button mat-button
+            color="primary"
+            (click)="saveEnumLocally()">Save Enum locally
+    </button>
+    <button mat-button
+            color="primary"
+            (click)="deleteSelectedEnum()">Delete selected enum
+    </button>
+</div>
+
 <mat-divider></mat-divider>
+
 <mat-form-field appearance="fill">
     <mat-label>Enter your enum as number</mat-label>
     <input type="number"
@@ -37,6 +45,6 @@
            placeholder="Enum as number">
 </mat-form-field>
 
-<div>
+<div class="result">
     <p>{{convertedResult}}</p>
 </div>
