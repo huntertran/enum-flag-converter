@@ -1,1 +1,14 @@
+mat-form-field,
+{
+    display: block;
+    margin: 24px;
+}
 
+.button-box
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 24px;
+    gap: 16px;
+}

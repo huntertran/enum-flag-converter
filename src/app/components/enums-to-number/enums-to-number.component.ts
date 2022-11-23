@@ -23,10 +23,21 @@ export class EnumsToNumberComponent implements OnInit {
     }
 
     ngOnInit(): void {
-//        this.flagNames = this.enumsService.getFlagNamesFromFlaggedEnum();
-        const flagsNames: string[] = ["A", "B", "C"];
+        this.initializeFlagsFormGroup();
+
+        this.enumsService.selectedEnumChangedEvent.subscribe(() => {
+            this.initializeFlagsFormGroup();
+        });
+    }
+
+    public onClearFlagsClick(): void {
+        this.flagsFormGroup.reset();
+    }
+
+    public initializeFlagsFormGroup(): void {
+        const flagNames: string[] = this.enumsService.getFlagNamesFromFlaggedEnum();
         this.flagsFormGroup = new FormGroup({});
-        flagsNames.forEach((flagName: string) => {
+        flagNames.forEach((flagName: string) => {
             this.flagsFormGroup.addControl(flagName, new FormControl(false));
         });
 
@@ -35,9 +46,5 @@ export class EnumsToNumberComponent implements OnInit {
                 this.flagNames.filter((flagName: string) => this.flagsFormGroup.controls[flagName].value == true)
             );
         });
-    }
-
-    onClearFlagsClick(): void {
-        this.flagsFormGroup.reset();
     }
 }
