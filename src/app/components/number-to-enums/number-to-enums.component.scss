@@ -1,20 +1,13 @@
-mat-form-field,
-{
+mat-form-field {
     display: block;
     margin: 24px;
 }
 
-.button-box
-{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 24px;
-    gap: 16px;
+.enum-input {
+    font-size: 24px;
 }
 
-.result
-{
+.result {
     margin-left: 24px;
     font-size: 24px;
 }

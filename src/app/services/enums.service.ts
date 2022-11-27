@@ -1,5 +1,6 @@
-import {EnumObject} from '../models/enum-object';
-import {EventEmitter, Injectable} from '@angular/core';
+import { EnumFlag } from './../models/enum-flag';
+import { EnumObject } from './../models/enum-object';
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
@@ -7,14 +8,18 @@ import {EventEmitter, Injectable} from '@angular/core';
 export class EnumsService {
 
     public selectedEnumChangedEvent: EventEmitter<any> = new EventEmitter<any>();
-    private flaggedEnum: Map<number, string> = new Map();
+    private _flaggedEnum: EnumFlag[] = [];
 
     constructor() {
     }
 
+    public get flaggedEnum(): EnumFlag[] {
+        return this._flaggedEnum;
+    }
+
     public parseFromEnumObject(enumObject: EnumObject): void {
         // reset the map
-        this.flaggedEnum = new Map();
+        this._flaggedEnum = [];
 
         let delimiter: string = ',';
         let splitted: string[] = enumObject.value.split(delimiter);
@@ -28,7 +33,8 @@ export class EnumsService {
                     throw new Error("Empty enum Key!");
                 }
 
-                this.flaggedEnum.set(flagBit, flagName);
+                // this.flaggedEnum.set(flagBit, flagName);
+                this._flaggedEnum.push(new EnumFlag(flagBit, flagName))
             }
         });
 
@@ -38,14 +44,14 @@ export class EnumsService {
     public convertFlagsToString(numberValue: number): string {
         let results: string[] = [];
 
-        if (this.flaggedEnum.size == 0) {
+        if (this._flaggedEnum.length == 0) {
             return '';
         }
 
-        for (let [key, value] of this.flaggedEnum) {
-            if (key != 0 && (numberValue & key) == key) {
+        for (let flag of this._flaggedEnum) {
+            if (flag.bit != 0 && (numberValue & flag.bit) == flag.bit) {
                 // has the flag
-                results.push(value);
+                results.push(flag.name);
             }
         }
 
@@ -53,15 +59,15 @@ export class EnumsService {
     }
 
     public getFlagNamesFromFlaggedEnum(): string[] {
-        return [...this.flaggedEnum.values()];
+        return this._flaggedEnum.map((flag: EnumFlag) => flag.name);
     }
 
     public convertFlagNamesToNumber(flags: string[]) {
         let result = 0;
 
-        for (let [key, value] of this.flaggedEnum) {
-            if (flags.includes(value)) {
-                result += key;
+        for (let flag of this._flaggedEnum) {
+            if (flags.includes(flag.name)) {
+                result += flag.bit;
             }
         }
 

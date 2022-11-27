@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {EnumsService} from "../../services/enums.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { EnumsService } from "../../services/enums.service";
+import { FormControl, FormGroup } from "@angular/forms";
+import { EnumFlag } from 'src/app/models/enum-flag';
 
 @Component({
     selector: 'enums-to-number',
@@ -19,8 +20,7 @@ export class EnumsToNumberComponent implements OnInit {
 
     constructor(
         private enumsService: EnumsService
-    ) {
-    }
+    ) { }
 
     ngOnInit(): void {
         this.initializeFlagsFormGroup();
@@ -35,10 +35,11 @@ export class EnumsToNumberComponent implements OnInit {
     }
 
     public initializeFlagsFormGroup(): void {
-        const flagNames: string[] = this.enumsService.getFlagNamesFromFlaggedEnum();
+        // const flagNames: string[] = this.enumsService.getFlagNamesFromFlaggedEnum();
+        const flags: EnumFlag[] = this.enumsService.flaggedEnum;
         this.flagsFormGroup = new FormGroup({});
-        flagNames.forEach((flagName: string) => {
-            this.flagsFormGroup.addControl(flagName, new FormControl(false));
+        flags.forEach((flag: EnumFlag) => {
+            this.flagsFormGroup.addControl(flag.name, new FormControl(false));
         });
 
         this.flagsFormGroup.valueChanges.subscribe(() => {

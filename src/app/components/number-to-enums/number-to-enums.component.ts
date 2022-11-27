@@ -23,4 +23,10 @@ export class NumberToEnumsComponent implements OnInit {
         this.enumsService.parseFromEnumObject(this.selectedEnum);
         this.convertedResult = this.enumsService.convertFlagsToString(this.numberAsEnum);
     }
+
+    public onEnumInputFocus($event: FocusEvent): void {
+        if ($event.target instanceof HTMLInputElement) {
+            ($event.target as HTMLInputElement).select();
+        }
+    }
 }

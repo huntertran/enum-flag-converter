@@ -19,17 +19,18 @@
                 appearance="fill">
     <mat-label>Paste your enum flag here</mat-label>
     <textarea matInput
+              title="enumTextToParse"
               rows="4"
               [(ngModel)]="selectedEnum.value"></textarea>
 </mat-form-field>
 
 <div class="button-box">
-    <button mat-button
+    <button mat-raised-button
             color="primary"
             (click)="saveEnumLocally()">Save Enum locally
     </button>
-    <button mat-button
-            color="primary"
+    <button mat-raised-button
+            color="warn"
             (click)="deleteSelectedEnum()">Delete selected enum
     </button>
 </div>
@@ -42,4 +43,3 @@
         <enums-to-number></enums-to-number>
     </mat-tab>
 </mat-tab-group>
-

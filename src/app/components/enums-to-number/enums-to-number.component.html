@@ -1,18 +1,26 @@
-<div class="flag-checkbox-list"
-     [formGroup]="flagsFormGroup">
-    <mat-checkbox *ngFor="let flagName of flagNames"
-                  [formControlName]="flagName"
-                  color="primary">{{ flagName }}
-    </mat-checkbox>
-</div>
+<div class="container">
+    <div class="item dynamic-checkboxes">
+        <button mat-raised-button
+                type="button"
+                color="primary"
+                (click)="onClearFlagsClick()">
+            Clear Flags
+        </button>
 
-<button mat-button
-        color="primary"
-        (click)="onClearFlagsClick()">Clear Flags
-</button>
+        <div class="flag-checkbox-list"
+             [formGroup]="flagsFormGroup">
+            <ng-container *ngFor="let flagName of flagNames">
+                <mat-checkbox *ngIf="flagName != 'None'"
+                              [formControlName]="flagName"
+                              color="primary">
+                    {{ flagName }}
+                </mat-checkbox>
+            </ng-container>
+        </div>
+    </div>
 
-<mat-divider></mat-divider>
-
-<div class="result">
-    <p>{{convertedResult}}</p>
+    <div class="item result">
+        <p>{{convertedResult}}</p>
+        <p class="result-background">Result</p>
+    </div>
 </div>
