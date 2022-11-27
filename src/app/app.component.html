@@ -1,39 +1,45 @@
-<mat-form-field appearance="fill">
-    <mat-label>Saved flag enums</mat-label>
-    <mat-select [(value)]="selectedEnum"
-                (selectionChange)="savedEnumSelectionChanged()">
-        <mat-option *ngFor="let savedEnum of savedEnums"
-                    [value]="savedEnum">
-            {{savedEnum.key}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
-<mat-form-field appearance="fill">
-    <mat-label>Enum name</mat-label>
-    <input matInput
-           placeholder="Enter your new enum name here"
-           [(ngModel)]="selectedEnum.key">
-</mat-form-field>
+<div class="grid-container">
+    <mat-form-field class="grid-item saved-flags"
+                    appearance="fill">
+        <mat-label>Saved flag enums</mat-label>
+        <mat-select [(value)]="selectedEnum"
+                    (selectionChange)="savedEnumSelectionChanged()">
+            <mat-option *ngFor="let savedEnum of savedEnums"
+                        [value]="savedEnum">
+                {{savedEnum.key}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="grid-item enum-name"
+                    appearance="fill">
+        <mat-label>Enum name</mat-label>
+        <input matInput
+               placeholder="Enter your new enum name here"
+               [(ngModel)]="selectedEnum.key">
+    </mat-form-field>
 
-<mat-form-field class="enum-full-width"
-                appearance="fill">
-    <mat-label>Paste your enum flag here</mat-label>
-    <textarea matInput
-              title="enumTextToParse"
-              rows="4"
-              [(ngModel)]="selectedEnum.value"></textarea>
-</mat-form-field>
+    <mat-form-field class="grid-item enum-full-width"
+                    appearance="fill">
+        <mat-label>Paste your enum flag here</mat-label>
+        <textarea matInput
+                  title="enumTextToParse"
+                  rows="16"
+                  [(ngModel)]="selectedEnum.value"></textarea>
+    </mat-form-field>
 
-<div class="button-box">
-    <button mat-raised-button
-            color="primary"
-            (click)="saveEnumLocally()">Save Enum locally
-    </button>
-    <button mat-raised-button
-            color="warn"
-            (click)="deleteSelectedEnum()">Delete selected enum
-    </button>
+    <div class="grid-item button-box">
+        <button mat-raised-button
+                color="primary"
+                (click)="saveEnumLocally()">Save Enum locally
+        </button>
+        <button mat-raised-button
+                color="warn"
+                (click)="deleteSelectedEnum()">Delete selected enum
+        </button>
+    </div>
 </div>
+
+
 
 <mat-tab-group>
     <mat-tab label="Number to Enums">
