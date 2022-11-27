@@ -8,44 +8,25 @@ import { EnumFlag } from 'src/app/models/enum-flag';
     templateUrl: './enums-to-number.component.html',
     styleUrls: ['./enums-to-number.component.scss']
 })
-export class EnumsToNumberComponent implements OnInit {
-
-    public flagsFormGroup!: FormGroup;
+export class EnumsToNumberComponent {
 
     public convertedResult: number = 0;
 
-    public get flagNames(): string[] {
-        return Object.keys(this.flagsFormGroup.controls);
+    public get flags(): EnumFlag[] {
+        return this.enumsService.flaggedEnum;
     }
 
     constructor(
         private enumsService: EnumsService
     ) { }
 
-    ngOnInit(): void {
-        this.initializeFlagsFormGroup();
-
-        this.enumsService.selectedEnumChangedEvent.subscribe(() => {
-            this.initializeFlagsFormGroup();
-        });
-    }
-
     public onClearFlagsClick(): void {
-        this.flagsFormGroup.reset();
+        for (const flag of this.flags) {
+            flag.isChecked = false;
+        }
     }
 
-    public initializeFlagsFormGroup(): void {
-        // const flagNames: string[] = this.enumsService.getFlagNamesFromFlaggedEnum();
-        const flags: EnumFlag[] = this.enumsService.flaggedEnum;
-        this.flagsFormGroup = new FormGroup({});
-        flags.forEach((flag: EnumFlag) => {
-            this.flagsFormGroup.addControl(flag.name, new FormControl(false));
-        });
-
-        this.flagsFormGroup.valueChanges.subscribe(() => {
-            this.convertedResult = this.enumsService.convertFlagNamesToNumber(
-                this.flagNames.filter((flagName: string) => this.flagsFormGroup.controls[flagName].value == true)
-            );
-        });
+    public onFlagChanged(): void {
+        this.convertedResult = this.enumsService.convertFlagsToNumber(this.flags);
     }
 }

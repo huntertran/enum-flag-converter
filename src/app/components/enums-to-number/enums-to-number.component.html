@@ -7,13 +7,13 @@
             Clear Flags
         </button>
 
-        <div class="flag-checkbox-list"
-             [formGroup]="flagsFormGroup">
-            <ng-container *ngFor="let flagName of flagNames">
-                <mat-checkbox *ngIf="flagName != 'None'"
-                              [formControlName]="flagName"
+        <div class="flag-checkbox-list">
+            <ng-container *ngFor="let flag of flags">
+                <mat-checkbox *ngIf="flag.bit != 0"
+                              [(ngModel)]="flag.isChecked"
+                              (change)="onFlagChanged()"
                               color="primary">
-                    {{ flagName }}
+                    {{ flag.name }}
                 </mat-checkbox>
             </ng-container>
         </div>

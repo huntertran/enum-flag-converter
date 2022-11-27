@@ -58,8 +58,16 @@ export class EnumsService {
         return results.join(', ');
     }
 
-    public getFlagNamesFromFlaggedEnum(): string[] {
-        return this._flaggedEnum.map((flag: EnumFlag) => flag.name);
+    public convertFlagsToNumber(flags: EnumFlag[]) {
+        let result: number = 0;
+
+        for (let flag of flags) {
+            if (flag.isChecked) {
+                result += flag.bit;
+            }
+        }
+
+        return result;
     }
 
     public convertFlagNamesToNumber(flags: string[]) {
