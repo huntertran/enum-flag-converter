@@ -1,3 +1,9 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: min-content min-content min-content;
+}
+
 mat-form-field {
     display: block;
     margin: 24px;
@@ -8,6 +14,6 @@ mat-form-field {
 }
 
 .result {
-    margin-left: 24px;
+    margin: 24px;
     font-size: 24px;
 }

@@ -2,21 +2,23 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
+    min-height: 240px;
 }
 
 .item {
     margin: 24px;
 
     &.dynamic-checkboxes {
-        flex-grow: 4;
+        flex: 3;
     }
 
     &.result {
-        flex-grow: 6;
+        flex: 7;
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
     }
 }
 
@@ -42,8 +44,8 @@ mat-form-field {
 .result-background {
     font-size: 60px;
     font-weight: bold;
-    position: fixed;
-    bottom: 12px;
-    right: 12px;
+    position: absolute;
+    top: 12px;
+    left: 12px;
     color: gray;
 }

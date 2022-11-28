@@ -1,14 +1,16 @@
-<mat-form-field appearance="fill">
-    <mat-label>Enter your enum as number</mat-label>
-    <input type="number"
-           class="enum-input"
-           (focus)="onEnumInputFocus($event)"
-           [(ngModel)]="numberAsEnum"
-           (ngModelChange)="convert()"
-           matInput
-           placeholder="Enum as number">
-</mat-form-field>
+<div class="grid-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your enum as number</mat-label>
+        <input type="number"
+               class="enum-input"
+               (focus)="onEnumInputFocus($event)"
+               [(ngModel)]="numberAsEnum"
+               (ngModelChange)="convert()"
+               matInput
+               placeholder="Enum as number">
+    </mat-form-field>
 
-<div class="result">
-    <p>{{convertedResult}}</p>
+    <div class="result">
+        <p>{{convertedResult}}</p>
+    </div>
 </div>
