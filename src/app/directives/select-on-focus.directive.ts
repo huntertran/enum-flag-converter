@@ -13,7 +13,6 @@ export class SelectOnFocusDirective
     }
 
     private selectText(): void {
-        console.log(this.element)
         this.element.nativeElement.select();
     }
 }
