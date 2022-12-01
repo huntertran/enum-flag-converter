@@ -8,7 +8,7 @@ import { EnumObject } from 'src/app/models/enum-object';
     templateUrl: './number-to-enums.component.html',
     styleUrls: ['./number-to-enums.component.scss']
 })
-export class NumberToEnumsComponent implements OnInit {
+export class NumberToEnumsComponent {
 
     @Input() public selectedEnum!: EnumObject;
     public numberAsEnum: number = 0;
@@ -16,17 +16,8 @@ export class NumberToEnumsComponent implements OnInit {
 
     constructor(private enumsService: EnumsService) { }
 
-    public ngOnInit(): void {
-    }
-
     public convert(): void {
         this.enumsService.parseFromEnumObject(this.selectedEnum);
         this.convertedResult = this.enumsService.convertFlagsToString(this.numberAsEnum);
-    }
-
-    public onEnumInputFocus($event: FocusEvent): void {
-        if ($event.target instanceof HTMLInputElement) {
-            ($event.target as HTMLInputElement).select();
-        }
     }
 }

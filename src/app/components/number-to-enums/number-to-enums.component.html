@@ -1,9 +1,9 @@
 <div class="grid-container">
     <mat-form-field appearance="fill">
         <mat-label>Enter your enum as number</mat-label>
-        <input type="number"
+        <input selectOnFocus
+               type="number"
                class="enum-input"
-               (focus)="onEnumInputFocus($event)"
                [(ngModel)]="numberAsEnum"
                (ngModelChange)="convert()"
                matInput

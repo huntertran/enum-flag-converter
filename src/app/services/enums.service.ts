@@ -7,7 +7,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class EnumsService {
 
-    public selectedEnumChangedEvent: EventEmitter<any> = new EventEmitter<any>();
+    public selectedEnumChangedEvent: EventEmitter<EnumFlag[]> = new EventEmitter<EnumFlag[]>();
     private _flaggedEnum: EnumFlag[] = [];
 
     constructor() {
@@ -38,7 +38,7 @@ export class EnumsService {
             }
         });
 
-        this.selectedEnumChangedEvent.emit();
+        this.selectedEnumChangedEvent.emit(this._flaggedEnum);
     }
 
     public convertFlagsToString(numberValue: number): string {
