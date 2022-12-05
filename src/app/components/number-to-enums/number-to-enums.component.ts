@@ -1,4 +1,3 @@
-import { CrudService } from './../../services/crud.service';
 import { EnumsService } from '../../services/enums.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { EnumObject } from 'src/app/models/enum-object';

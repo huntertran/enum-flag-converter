@@ -18,13 +18,15 @@ import { NumberToEnumsComponent } from './components/number-to-enums/number-to-e
 import { EnumsToNumberComponent } from './components/enums-to-number/enums-to-number.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {SelectOnFocusDirective} from "./directives/select-on-focus.directive";
+import {CopyOnClickDirective} from "./directives/copy-on-focus.directive";
 
 @NgModule({
   declarations: [
     AppComponent,
     NumberToEnumsComponent,
     EnumsToNumberComponent,
-    SelectOnFocusDirective
+    SelectOnFocusDirective,
+    CopyOnClickDirective
   ],
   imports: [
     BrowserModule,
