@@ -1,5 +1,5 @@
 import { EnumsService } from '../../services/enums.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EnumObject } from 'src/app/models/enum-object';
 
 @Component({

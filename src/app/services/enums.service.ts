@@ -18,7 +18,7 @@ export class EnumsService {
     }
 
     public parseFromEnumObject(enumObject: EnumObject): void {
-        // reset the map
+        // reset
         this._flaggedEnum = [];
 
         let delimiter: string = ',';
@@ -33,7 +33,6 @@ export class EnumsService {
                     throw new Error("Empty enum Key!");
                 }
 
-                // this.flaggedEnum.set(flagBit, flagName);
                 this._flaggedEnum.push(new EnumFlag(flagBit, flagName))
             }
         });
