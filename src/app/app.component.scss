@@ -1,7 +1,7 @@
 .grid-container {
     display: grid;
-    grid-template-columns: 30% 70%;
-    grid-template-rows: min-content min-content min-content;
+    grid-template-columns: 20% 40% 40%;
+    grid-template-rows: min-content min-content min-content min-content;
 }
 
 mat-form-field {
@@ -10,19 +10,25 @@ mat-form-field {
 }
 
 .grid-item {
-    &.saved-flag {
+    &.new-enum-button {
         grid-column: 1;
         grid-row: 1;
+        margin: 24px;
     }
 
-    &.enum-name {
+    &.saved-flag {
         grid-column: 1;
         grid-row: 2;
     }
 
-    &.button-box {
+    &.enum-name {
         grid-column: 1;
         grid-row: 3;
+    }
+
+    &.button-box {
+        grid-column: 1;
+        grid-row: 4;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -33,6 +39,18 @@ mat-form-field {
     &.enum-full-width {
         grid-column: 2;
         grid-row-start: 1;
-        grid-row-end: span 3;
+        grid-row-end: span 4;
     }
+
+    &.instruction {
+        grid-column: 3;
+        grid-row-start: 1;
+        grid-row-end: span 4;
+        margin-top: 24px;
+    }
+}
+
+textarea {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
 }

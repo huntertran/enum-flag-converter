@@ -1,4 +1,12 @@
 <div class="grid-container">
+    <div class="grid-item new-enum-button">
+        <button mat-raised-button
+                color="primary"
+                (click)="addNewEnum()">
+                Add new Enum
+        </button>
+    </div>
+    
     <mat-form-field class="grid-item saved-flags"
                     appearance="fill">
         <mat-label>Saved flag enums</mat-label>
@@ -26,6 +34,13 @@
                   rows="16"
                   [(ngModel)]="selectedEnum.value"></textarea>
     </mat-form-field>
+
+    <div class="grid-item instruction">
+        <p>Instruction: Copy and paste the enum code, exclude the enum class name and curly brace</p>
+        <img src="/assets/instruction.gif" alt="instruction"/>
+        <p>You can read more on how to use Flag enums to store boolean values on my blog: </p>
+        <a href="https://huntertran.github.io/blog/2022/04/24/Optimize-list-of-bool-values-in-C/">Optimize list of bool values in C#</a>
+    </div>
 
     <div class="grid-item button-box">
         <button mat-raised-button
