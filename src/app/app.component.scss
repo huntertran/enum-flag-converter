@@ -30,6 +30,7 @@ mat-form-field {
         grid-column: 1;
         grid-row: 4;
         margin: 24px;
+
         button {
             margin: 2px;
         }
@@ -49,7 +50,9 @@ mat-form-field {
     }
 }
 
-textarea {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: large;
+mat-form-field {
+    textarea {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: large;
+    }
 }

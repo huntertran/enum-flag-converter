@@ -67,7 +67,6 @@ export class AppComponent implements OnInit {
             }
 
             this.savedEnums.push(sampleEnum);
-
             this.selectedEnum = this.savedEnums[1];
         }
     }
