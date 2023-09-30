@@ -1,6 +1,6 @@
 # EnumFlagConverter
 
-A simple tool to convert C# flagged enum to number, and vice versa. You can access the tool here: [https://huntertran.github.io/enum-flag-converter/](https://huntertran.github.io/enum-flag-converter/)
+A simple tool to convert a C# flagged enum to a number and vice versa. You can access the tool here: [https://huntertran.github.io/enum-flag-converter/](https://huntertran.github.io/enum-flag-converter/)
 
 # Instruction
 
@@ -16,5 +16,5 @@ Step 3: Enter a number, then the converter will work automatically
 
 (Contributors are welcomed)
 
-1. Cannot convert combined enum #3
+1. Cannot convert combined enum [(issue #3)](/../../issues/3)
 2. Should be able to work with other languages
