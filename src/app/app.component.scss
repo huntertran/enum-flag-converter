@@ -29,11 +29,10 @@ mat-form-field {
     &.button-box {
         grid-column: 1;
         grid-row: 4;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
         margin: 24px;
-        gap: 16px;
+        button {
+            margin: 2px;
+        }
     }
 
     &.enum-full-width {

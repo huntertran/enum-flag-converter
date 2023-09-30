@@ -3,10 +3,10 @@
         <button mat-raised-button
                 color="primary"
                 (click)="addNewEnum()">
-                Add new Enum
+            Add new Enum
         </button>
     </div>
-    
+
     <mat-form-field class="grid-item saved-flags"
                     appearance="fill">
         <mat-label>Saved flag enums</mat-label>
@@ -37,15 +37,18 @@
 
     <div class="grid-item instruction">
         <p>Instruction: Copy and paste the enum code, exclude the enum class name and curly brace</p>
-        <img src="/assets/instruction.gif" alt="instruction"/>
+        <img src="/assets/instruction.gif"
+             alt="instruction" />
         <p>You can read more on how to use Flag enums to store boolean values on my blog: </p>
-        <a href="https://huntertran.github.io/blog/2022/04/24/Optimize-list-of-bool-values-in-C/">Optimize list of bool values in C#</a>
+        <a href="https://huntertran.github.io/blog/2022/04/24/Optimize-list-of-bool-values-in-C/">
+            Optimize list of bool values in C#
+        </a>
     </div>
 
     <div class="grid-item button-box">
         <button mat-raised-button
                 color="primary"
-                (click)="saveEnumLocally()">Save Enum locally
+                (click)="saveEnumLocally()">Save locally
         </button>
         <button mat-raised-button
                 color="warn"
@@ -54,9 +57,9 @@
     </div>
 </div>
 
+<mat-divider></mat-divider>
 
-
-<mat-tab-group>
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
     <mat-tab label="Number to Enums">
         <number-to-enums [selectedEnum]="selectedEnum"></number-to-enums>
     </mat-tab>
