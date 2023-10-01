@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
             // No saved enum. Create a sample one
             var sampleEnum: EnumObject = {
                 key: "Sample Enum",
-                value: "None         = 0,\nHasTV        = 1,\nHasMicrowave = 2,\nHasOven      = 4,\nHasFridge    = 8,"
+                value: "None         = 0,\nHasTV        = 1,\nHasMicrowave = 2,\nHasOven      = 4,\nHasFridge    = 8,\nCanCook      = HasMicrowave | HasOven,"
             }
 
             this.savedEnums.push(sampleEnum);

@@ -26,7 +26,14 @@ export class EnumsService {
         splitted.forEach(flag => {
             let flagElements: string[] = flag.split('=');
             if (flagElements.length == 2) {
-                let flagBit: number = Number.parseInt(flagElements[1].trim());
+                let flagBit: number;
+                if (flagElements[1].indexOf("|") != -1) {
+                    // Contains combined enum
+                    flagBit = this.parseCombinedEnum(flagElements[1], this._flaggedEnum);
+                } else {
+                    flagBit = Number.parseInt(flagElements[1].trim());
+                }
+
                 let flagName: string = flagElements[0].trim();
 
                 if (Number.isNaN(flagBit)) {
@@ -38,6 +45,28 @@ export class EnumsService {
         });
 
         this.selectedEnumChangedEvent.emit(this._flaggedEnum);
+    }
+
+    private parseCombinedEnum(combinedFlagBit: string, existingFlags: EnumFlag[]): number {
+        let splittedFlags: string[] = combinedFlagBit.split("|");
+        let convertedFlags: EnumFlag[] = [];
+
+        for (const splittedFlag of splittedFlags) {
+            let foundFlag: EnumFlag | undefined = existingFlags.find(flag => flag.name === splittedFlag.trim());
+            if (foundFlag) {
+                foundFlag.isChecked = true;
+                convertedFlags.push(foundFlag);
+            }
+        }
+
+        let result = this.convertFlagsToNumber(convertedFlags);
+
+        // reset isCheck property
+        for (const flag of convertedFlags) {
+            flag.isChecked = false;
+        }
+
+        return result;
     }
 
     public convertFlagsToString(numberValue: number): string {
@@ -62,7 +91,7 @@ export class EnumsService {
 
         for (let flag of flags) {
             if (flag.isChecked) {
-                result += flag.bit;
+                result = result | flag.bit;
             }
         }
 
