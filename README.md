@@ -16,5 +16,5 @@ Step 3: Enter a number, then the converter will work automatically
 
 (Contributors are welcomed)
 
-1. Cannot convert combined enum [(issue #3)](/../../issues/3)
+~~1. Cannot convert combined enum [(issue #3)](/../../issues/3)~~ Implemented
 2. Should be able to work with other languages
