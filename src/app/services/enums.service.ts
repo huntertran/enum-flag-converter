@@ -83,7 +83,7 @@ export class EnumsService {
             }
         }
 
-        return results.join(', ');
+        return results.join(' test,\n');
     }
 
     public convertFlagsToNumber(flags: EnumFlag[]) {
