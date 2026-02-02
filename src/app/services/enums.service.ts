@@ -69,6 +69,19 @@ export class EnumsService {
         return result;
     }
 
+    public getFlagsFromNumber(numberValue: number): EnumFlag[] {
+        let result: EnumFlag[] = [];
+
+        for (let flag of this._flaggedEnum) {
+            if (flag.bit != 0 && (numberValue & flag.bit) == flag.bit) {
+                // has the flag
+                result.push(flag);
+            }
+        }
+
+        return result;
+    }
+
     public convertFlagsToString(numberValue: number): string {
         let results: string[] = [];
 
@@ -92,18 +105,6 @@ export class EnumsService {
         for (let flag of flags) {
             if (flag.isChecked) {
                 result = result | flag.bit;
-            }
-        }
-
-        return result;
-    }
-
-    public convertFlagNamesToNumber(flags: string[]) {
-        let result = 0;
-
-        for (let flag of this._flaggedEnum) {
-            if (flags.includes(flag.name)) {
-                result += flag.bit;
             }
         }
 

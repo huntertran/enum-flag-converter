@@ -20,7 +20,19 @@
     </div>
 
     <div class="item result">
-        <p copyOnClick>{{convertedResult}}</p>
+        <!-- <p copyOnClick>{{convertedResult}}</p> -->
         <p class="result-background">Result</p>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your enum as number</mat-label>
+            <mat-label *ngIf="isWarning"
+                       class="warn">Number is invalid</mat-label>
+            <input selectOnFocus
+                   type="number"
+                   class="enum-input"
+                   [(ngModel)]="convertedResult"
+                   (ngModelChange)="convert()"
+                   matInput
+                   placeholder="Enum as number">
+        </mat-form-field>
     </div>
 </div>

@@ -16,9 +16,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NumberToEnumsComponent } from './components/number-to-enums/number-to-enums.component';
 import { EnumsToNumberComponent } from './components/enums-to-number/enums-to-number.component';
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {SelectOnFocusDirective} from "./directives/select-on-focus.directive";
-import {CopyOnClickDirective} from "./directives/copy-on-focus.directive";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { SelectOnFocusDirective } from "./directives/select-on-focus.directive";
+import { CopyOnClickDirective } from "./directives/copy-on-focus.directive";
 
 @NgModule({
   declarations: [

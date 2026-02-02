@@ -59,11 +59,12 @@
 
 <mat-divider></mat-divider>
 
-<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-    <mat-tab label="Number to Enums">
+<mat-tab-group mat-stretch-tabs="false"
+               mat-align-tabs="start">
+    <!-- <mat-tab label="Number to Enums">
         <number-to-enums [selectedEnum]="selectedEnum"></number-to-enums>
-    </mat-tab>
+    </mat-tab> -->
     <mat-tab label="Enums to Number">
-        <enums-to-number></enums-to-number>
+        <enums-to-number [selectedEnum]="selectedEnum"></enums-to-number>
     </mat-tab>
 </mat-tab-group>
