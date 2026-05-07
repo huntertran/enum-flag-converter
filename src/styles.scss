@@ -1,4 +1,158 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@include mat.core();
+
+$primary:  mat.define-palette(mat.$cyan-palette,    400, 200, 700);
+$accent:   mat.define-palette(mat.$light-green-palette, A200, A100, A400);
+$warn:     mat.define-palette(mat.$red-palette, 400);
+
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $primary,
+    accent:  $accent,
+    warn:    $warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: '"IBM Plex Sans", sans-serif',
+  ),
+  density: -1,
+));
+
+@include mat.all-component-themes($dark-theme);
+
+/* ── Custom Properties ─────────────────────────────────── */
+:root {
+  --bg-0:   #070b0f;
+  --bg-1:   #0d1117;
+  --bg-2:   #161b22;
+  --bg-3:   #1c2333;
+  --border: #21262d;
+  --text-1: #e6edf3;
+  --text-2: #8b949e;
+  --text-3: #484f58;
+  --cyan:   #22d3ee;
+  --green:  #3fb950;
+  --orange: #f78166;
+  --red:    #da3633;
+  --mono:  'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+  --ui:    'IBM Plex Sans', system-ui, sans-serif;
+  --r:      4px;
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg-0);
+  color: var(--text-1);
+  font-family: var(--ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Material MDC Overrides ────────────────────────────── */
+.mat-mdc-form-field {
+  --mdc-filled-text-field-container-color:          var(--bg-2);
+  --mdc-outlined-text-field-input-text-color:       var(--text-1);
+  --mdc-outlined-text-field-label-text-color:       var(--text-2);
+  --mdc-outlined-text-field-outline-color:          var(--border);
+  --mdc-outlined-text-field-hover-outline-color:    var(--text-2);
+  --mdc-outlined-text-field-focus-outline-color:    var(--cyan);
+  --mdc-outlined-text-field-focus-label-text-color: var(--cyan);
+  --mat-form-field-container-text-font:             var(--mono);
+  --mat-form-field-container-text-size:             13px;
+}
+
+.mat-mdc-select-value-text {
+  color: var(--text-1) !important;
+  font-family: var(--mono) !important;
+  font-size: 13px !important;
+}
+
+.mat-mdc-select-panel {
+  background: var(--bg-3) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .6) !important;
+}
+
+.mat-mdc-option {
+  font-family: var(--mono) !important;
+  font-size: 13px !important;
+
+  &.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+    color: var(--cyan) !important;
+  }
+}
+
+.mat-mdc-checkbox {
+  --mdc-checkbox-selected-checkmark-color:         #070b0f;
+  --mdc-checkbox-selected-icon-color:              var(--cyan);
+  --mdc-checkbox-selected-focus-icon-color:        var(--cyan);
+  --mdc-checkbox-selected-hover-icon-color:        var(--cyan);
+  --mdc-checkbox-selected-pressed-icon-color:      var(--cyan);
+  --mdc-checkbox-unselected-icon-color:            var(--text-3);
+  --mdc-checkbox-unselected-hover-icon-color:      var(--text-2);
+  --mdc-checkbox-unselected-focus-icon-color:      var(--text-2);
+  --mdc-checkbox-unselected-pressed-icon-color:    var(--text-2);
+  --mat-checkbox-label-text-color:                 var(--text-1);
+  --mat-checkbox-label-text-font:                  var(--mono);
+  --mat-checkbox-label-text-size:                  13px;
+}
+
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-flat-button.mat-primary {
+  --mdc-protected-button-container-color:          var(--cyan);
+  --mdc-protected-button-label-text-color:         #070b0f;
+  --mdc-filled-button-container-color:             var(--cyan);
+  --mdc-filled-button-label-text-color:            #070b0f;
+  font-family: var(--mono) !important;
+  font-size: 12px !important;
+  letter-spacing: .06em !important;
+}
+
+.mat-mdc-outlined-button {
+  --mdc-outlined-button-outline-color:             var(--border);
+  --mdc-outlined-button-label-text-color:          var(--text-2);
+  font-family: var(--mono) !important;
+  font-size: 12px !important;
+  letter-spacing: .06em !important;
+
+  &:hover {
+    --mdc-outlined-button-outline-color:           var(--cyan);
+    --mdc-outlined-button-label-text-color:        var(--cyan);
+  }
+}
+
+.mat-mdc-icon-button {
+  color: var(--text-2) !important;
+  &:hover { color: var(--orange) !important; }
+}
+
+.mat-mdc-tab-header {
+  background: var(--bg-2) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.mdc-tab__text-label {
+  font-family: var(--mono) !important;
+  font-size: 11px !important;
+  letter-spacing: .1em !important;
+  text-transform: uppercase !important;
+  color: var(--text-2) !important;
+}
+
+.mdc-tab--active .mdc-tab__text-label { color: var(--cyan) !important; }
+
+.mdc-tab-indicator__content--underline {
+  border-color: var(--cyan) !important;
+}
+
+.mat-divider { border-color: var(--border) !important; }
+
+/* ── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  {
+  background: var(--border);
+  border-radius: 3px;
+  &:hover { background: var(--text-3); }
+}

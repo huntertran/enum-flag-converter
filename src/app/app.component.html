@@ -1,70 +1,84 @@
-<div class="grid-container">
-    <div class="grid-item new-enum-button">
-        <button mat-raised-button
-                color="primary"
-                (click)="addNewEnum()">
-            Add new Enum
-        </button>
+<div class="app-shell">
+
+  <!-- ── Top Bar ──────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-glyph">[</span><span class="brand-flags">flags</span><span class="brand-glyph">]</span>
+      <span class="brand-sep">/</span>
+      <span class="brand-subtitle">Flag Enum Converter</span>
     </div>
 
-    <mat-form-field class="grid-item saved-flags"
-                    appearance="fill">
-        <mat-label>Saved flag enums</mat-label>
-        <mat-select [(value)]="selectedEnum"
-                    (selectionChange)="savedEnumSelectionChanged()">
-            <mat-option *ngFor="let savedEnum of savedEnums"
-                        [value]="savedEnum">
-                {{savedEnum.key}}
-            </mat-option>
+    <div class="topbar-center">
+      <mat-form-field appearance="outline" class="field-sm field-select">
+        <mat-label>Saved enums</mat-label>
+        <mat-select [(value)]="selectedEnum" (selectionChange)="savedEnumSelectionChanged()">
+          <mat-option *ngFor="let e of savedEnums" [value]="e">{{ e.key }}</mat-option>
         </mat-select>
-    </mat-form-field>
-    <mat-form-field class="grid-item enum-name"
-                    appearance="fill">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field-sm field-name">
         <mat-label>Enum name</mat-label>
-        <input matInput
-               placeholder="Enter your new enum name here"
-               [(ngModel)]="selectedEnum.key">
-    </mat-form-field>
-
-    <mat-form-field class="grid-item enum-full-width"
-                    appearance="fill">
-        <mat-label>Paste your enum flag here</mat-label>
-        <textarea matInput
-                  title="enumTextToParse"
-                  rows="16"
-                  [(ngModel)]="selectedEnum.value"></textarea>
-    </mat-form-field>
-
-    <div class="grid-item instruction">
-        <p>Instruction: Copy and paste the enum code, exclude the enum class name and curly brace</p>
-        <img src="assets/instruction.gif"
-             alt="instruction" />
-        <p>You can read more on how to use Flag enums to store boolean values on my blog: </p>
-        <a href="https://huntertran.github.io/blog/2022/04/24/Optimize-list-of-bool-values-in-C/">
-            Optimize list of bool values in C#
-        </a>
+        <input matInput [(ngModel)]="selectedEnum.key" placeholder="MyFlags">
+      </mat-form-field>
     </div>
 
-    <div class="grid-item button-box">
-        <button mat-raised-button
-                color="primary"
-                (click)="saveEnumLocally()">Save locally
-        </button>
-        <button mat-raised-button
-                color="warn"
-                (click)="deleteSelectedEnum()">Delete selected enum
-        </button>
+    <div class="topbar-actions">
+      <button mat-stroked-button (click)="addNewEnum()">
+        <mat-icon>add</mat-icon>New
+      </button>
+      <button mat-flat-button color="primary" (click)="saveEnumLocally()">
+        <mat-icon>save</mat-icon>Save
+      </button>
+      <button mat-icon-button (click)="deleteSelectedEnum()" title="Delete selected enum">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
     </div>
+  </header>
+
+  <!-- ── Workspace ────────────────────────────────────── -->
+  <div class="workspace">
+
+    <!-- Left: Code editor pane -->
+    <section class="pane pane-editor">
+      <div class="pane-titlebar">
+        <div class="pane-tab active">
+          <mat-icon class="tab-icon">article</mat-icon>
+          <span>enum_definition</span><span class="ext">.cs</span>
+        </div>
+        <div class="pane-hint">exclude class name &amp; braces</div>
+      </div>
+      <div class="editor-wrap">
+        <div class="gutter" aria-hidden="true">
+          <span *ngFor="let n of lineNumbers" class="ln">{{ n }}</span>
+        </div>
+        <textarea
+          class="code-area"
+          [(ngModel)]="selectedEnum.value"
+          (ngModelChange)="updateLineNumbers()"
+          placeholder="None         = 0,&#10;HasTV        = 1,&#10;HasMicrowave = 2,&#10;HasOven      = 4,&#10;HasFridge    = 8,&#10;CanCook      = HasMicrowave | HasOven,"
+          spellcheck="false"
+          autocomplete="off"
+          autocorrect="off"
+        ></textarea>
+      </div>
+    </section>
+
+    <!-- Right: Converter pane -->
+    <section class="pane pane-converter">
+      <enums-to-number [selectedEnum]="selectedEnum"></enums-to-number>
+    </section>
+
+  </div>
+
+  <!-- ── Status bar ────────────────────────────────────── -->
+  <footer class="statusbar">
+    <span class="status-icon"><mat-icon>info_outline</mat-icon></span>
+    <span class="status-text">Paste enum body — one flag per line, comma-separated</span>
+    <span class="status-spacer"></span>
+    <a href="https://huntertran.github.io/blog/2022/04/24/Optimize-list-of-bool-values-in-C/"
+       target="_blank" class="status-link">
+      Read: Flag Enum Guide&nbsp;↗
+    </a>
+  </footer>
+
 </div>
-
-<mat-divider></mat-divider>
-
-<mat-tab-group mat-stretch-tabs="false"
-               mat-align-tabs="start">
-    <!-- <mat-tab label="Number to Enums">
-        <number-to-enums [selectedEnum]="selectedEnum"></number-to-enums>
-    </mat-tab> -->
-    <mat-tab label="Enums to Number">
-        <enums-to-number [selectedEnum]="selectedEnum"></enums-to-number>
-    </mat-tab>
-</mat-tab-group>

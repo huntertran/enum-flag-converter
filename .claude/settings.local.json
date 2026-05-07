@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"D:\\\\Projects\\\\enum-flag-converter\" -Force)",
+      "Bash(Select-Object Name, Mode)",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\Projects\\\\enum-flag-converter\\\\src\" -Recurse -Force | Where-Object {$_.Mode -match 'd'} | Select-Object FullName | Sort-Object FullName)",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\Projects\\\\enum-flag-converter\" -Depth 2 | Where-Object {$_.Name -match \"\\(\\\\.config|\\\\.env|settings\\)\" -and $_.Mode -match '-'} | Format-Table Name, FullName)",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\Projects\\\\enum-flag-converter\\\\src\" -Recurse -Exclude node_modules | Where-Object {$_.Mode -match '-'} | ForEach-Object {$_.FullName.Replace\\('D:\\\\Projects\\\\enum-flag-converter\\\\', ''\\)} | Sort-Object)",
+      "Bash(npx ng *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:4200/)"
+    ]
+  }
+}

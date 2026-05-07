@@ -17,6 +17,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { NumberToEnumsComponent } from './components/number-to-enums/number-to-enums.component';
 import { EnumsToNumberComponent } from './components/enums-to-number/enums-to-number.component';
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
 import { SelectOnFocusDirective } from "./directives/select-on-focus.directive";
 import { CopyOnClickDirective } from "./directives/copy-on-focus.directive";
 
@@ -43,7 +45,9 @@ import { CopyOnClickDirective } from "./directives/copy-on-focus.directive";
     MatDividerModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,38 +1,88 @@
-<div class="container">
-    <div class="item dynamic-checkboxes">
-        <button mat-raised-button
-                type="button"
-                color="primary"
-                (click)="onClearFlagsClick()">
-            Clear Flags
-        </button>
+<div class="converter">
 
-        <div class="flag-checkbox-list">
-            <ng-container *ngFor="let flag of flags">
-                <mat-checkbox *ngIf="flag.bit != 0"
-                              [(ngModel)]="flag.isChecked"
-                              (change)="onFlagChanged()"
-                              color="primary">
-                    {{ flag.name }}
-                </mat-checkbox>
-            </ng-container>
+  <!-- ── Flags Column ───────────────────────────────── -->
+  <div class="col col-flags">
+
+    <div class="col-header">
+      <span class="col-label">FLAGS</span>
+      <span class="flag-counter" [class.counter-active]="activeFlags > 0">
+        {{ activeFlags }}<span class="counter-sep">/</span>{{ totalFlags }}
+      </span>
+      <button mat-stroked-button class="btn-clear" (click)="onClearFlagsClick()">
+        <mat-icon>clear_all</mat-icon>Reset
+      </button>
+    </div>
+
+    <div class="flags-list">
+      <ng-container *ngFor="let flag of flags">
+        <div *ngIf="flag.bit != 0"
+             class="flag-row"
+             [class.flag-on]="flag.isChecked"
+             (click)="flag.isChecked = !flag.isChecked; onFlagChanged()">
+          <mat-checkbox
+            [(ngModel)]="flag.isChecked"
+            (change)="onFlagChanged()"
+            color="primary"
+            class="flag-cb"
+            (click)="$event.stopPropagation()">
+          </mat-checkbox>
+          <span class="flag-name">{{ flag.name }}</span>
+          <span class="flag-val">{{ flag.bit }}</span>
         </div>
+      </ng-container>
+
+      <div *ngIf="totalFlags === 0" class="flags-empty">
+        <mat-icon>code_off</mat-icon>
+        <span>No flags parsed yet</span>
+      </div>
     </div>
 
-    <div class="item result">
-        <!-- <p copyOnClick>{{convertedResult}}</p> -->
-        <p class="result-background">Result</p>
-        <mat-form-field appearance="fill">
-            <mat-label>Enter your enum as number</mat-label>
-            <mat-label *ngIf="isWarning"
-                       class="warn">Number is invalid</mat-label>
-            <input selectOnFocus
-                   type="number"
-                   class="enum-input"
-                   [(ngModel)]="convertedResult"
-                   (ngModelChange)="convert()"
-                   matInput
-                   placeholder="Enum as number">
-        </mat-form-field>
+  </div>
+
+  <!-- ── Result Column ──────────────────────────────── -->
+  <div class="col col-result">
+
+    <div class="col-header">
+      <span class="col-label">RESULT</span>
+      <span *ngIf="isWarning" class="warn-badge">
+        <mat-icon>warning_amber</mat-icon>invalid
+      </span>
     </div>
+
+    <!-- Big number display -->
+    <div class="result-display" [class.result-warn]="isWarning" [class.result-zero]="convertedResult === 0">
+      <div class="result-decimal">{{ convertedResult }}</div>
+      <div class="result-alts">
+        <span class="result-hex">{{ hexResult }}</span>
+        <span class="result-dot">·</span>
+        <span class="result-bin">{{ binaryResult }}</span>
+      </div>
+      <!-- Bit grid -->
+      <div class="bit-grid" *ngIf="convertedResult > 0">
+        <span *ngFor="let on of getBitArray()"
+              class="bit"
+              [class.bit-on]="on">
+        </span>
+      </div>
+    </div>
+
+    <!-- Number input -->
+    <div class="result-input">
+      <mat-form-field appearance="outline" class="number-field">
+        <mat-label>Decode a number</mat-label>
+        <input selectOnFocus
+               type="number"
+               matInput
+               [(ngModel)]="convertedResult"
+               (ngModelChange)="convert()"
+               placeholder="0">
+      </mat-form-field>
+      <div *ngIf="isWarning" class="input-warn">
+        <mat-icon>warning_amber</mat-icon>
+        Number does not map to a valid flag combination
+      </div>
+    </div>
+
+  </div>
+
 </div>
